@@ -1,39 +1,43 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import cookieSession from 'cookie-session';
 import connect from './mongoose.js';
-import { signin, handleSignin } from './routes/admin/login.js';
-import dotenv from 'dotenv/config';
+import { signin, login } from './routes/admin/login.js';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
+import cookieSession from 'cookie-session';
+import { home } from './home.js';
+import { adminPanel } from './admin.js';
+import { auth, requireAdmin } from './auth.js';
 
-// import auth from './auth.js';
-
+dotenv.config();
 const router = express.Router();
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+connect();
 app.use(
   cookieSession({
     name: 'session',
-    keys: JSON.parse(process.env.SESSION_KEYS),
+    keys: [process.env.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    secure: true,
   })
 );
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-connect();
+app.get('/home', auth, home);
+
+app.get('/admin', auth, requireAdmin, adminPanel);
 
 // Route for the signin page
 app.get('/signin', signin);
 
 // Route for handling the signin form submission
-app.post('/signin', handleSignin);
+app.post('/signin', login);
 
 app.get('/signout', (req, res) => {
-  req.session = null;
-  res.clearCookie('jwt');
+  res.clearCookie('token');
   res.send('Wylogowano');
 });
 

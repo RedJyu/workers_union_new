@@ -14,30 +14,36 @@ export const signin = async (req, res) => {
   `);
 };
 
-export const handleSignin = async (req, res) => {
-  const { email, password } = req.body;
+export const login = async (req, res) => {
+  try {
+    // Get user from database based on email
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid email or password.' });
+    }
 
-  // Check if the user exists
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) {
-    return res.status(400).json({ message: 'Invalid email' });
+    // Compare password with the hash stored in the database
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid email or password.' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '5h',
+    });
+
+    // Set token as a cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Lax',
+    });
+
+    // Send success response with token
+    res.json({ message: `Logged in successfully ${user.name}.`, token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error.' });
   }
-
-  // Check if the password is correct
-  const isPasswordValid = await bcrypt.compare(
-    req.body.password,
-    user.password
-  );
-  if (!isPasswordValid) {
-    return res.status(400).json({ message: 'Invalid password' });
-  }
-
-  // Generate a JWT token
-  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-    expiresIn: '5h',
-  });
-
-  // Set the token as a cookie
-  res.cookie('jwt', token, { httpOnly: true });
-  res.send(`Logged in successfully ${user.name}.`);
 };

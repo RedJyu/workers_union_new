@@ -26,7 +26,10 @@ const rejestracja = () => {
         name: req.body.name,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, 10), // hash and salt the password
-        passwordConfirmation: req.body.passwordConfirmation,
+        passwordConfirmation: await bcrypt.hash(
+          req.body.passwordConfirmation,
+          10
+        ),
       });
 
       // Save user to database

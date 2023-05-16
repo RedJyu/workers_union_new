@@ -1,13 +1,18 @@
 import jwt from 'jsonwebtoken';
 import User from './signup.js';
 
-const auth = async (req, res, next) => {
+export const auth = async (req, res, next) => {
   try {
     // Get token from cookie
-    const token = req.session.token;
+    const token = req.cookies.token;
+
+    if (!token) {
+      throw new Error();
+    }
 
     // Verify token and decode user ID
-    const { userId } = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { userId } = decoded;
 
     // Find user in database based on ID
     const user = await User.findById(userId);
@@ -23,4 +28,10 @@ const auth = async (req, res, next) => {
   }
 };
 
-export default auth;
+export const requireAdmin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401).send('Unauthorized access.');
+  }
+};
