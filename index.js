@@ -6,15 +6,16 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
 import { home } from './home.js';
-import { adminPanel } from './admin.js';
 import { auth, requireAdmin } from './auth.js';
+import { signup } from './signup.js';
+import adminRoutes from './adminRoutes.js';
 
+connect();
 dotenv.config();
 const router = express.Router();
 
 const app = express();
 const port = process.env.PORT || 3000;
-connect();
 app.use(
   cookieSession({
     name: 'session',
@@ -28,13 +29,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/home', auth, home);
 
-app.get('/admin', auth, requireAdmin, adminPanel);
+app.use('/admin', adminRoutes);
 
 // Route for the signin page
 app.get('/signin', signin);
 
 // Route for handling the signin form submission
 app.post('/signin', login);
+signup(app);
+app.get('/signup', signup);
+app.post('/signup', signup);
 
 app.get('/signout', (req, res) => {
   res.clearCookie('token');
@@ -44,3 +48,5 @@ app.get('/signout', (req, res) => {
 app.listen(port, () => {
   console.log('working');
 });
+
+export default app;

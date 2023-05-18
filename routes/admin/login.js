@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../../signup.js';
+import User from '../../userSchema.js';
 
 export const signin = async (req, res) => {
   res.send(`
@@ -25,7 +25,7 @@ export const login = async (req, res) => {
     // Compare password with the hash stored in the database
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid email or password.' });
+      return res.status(400).json({ message: 'Invalid email or password.' });
     }
 
     // Generate JWT token

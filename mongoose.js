@@ -1,8 +1,60 @@
+// import mongoose from 'mongoose';
+
+// let usersDB;
+// let postsDB;
+
+// const connect = () => {
+//   usersDB = mongoose.createConnection(
+//     'mongodb://mo35226_Users:GrimTest12@mongo.ct8.pl/mo35226_Users',
+//     {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//       serverSelectionTimeoutMS: 5000,
+//       socketTimeoutMS: 45000,
+//       keepAlive: true,
+//       keepAliveInitialDelay: 300000,
+//       retryWrites: true,
+//       w: 'majority',
+//     }
+//   );
+
+//   usersDB.once('open', () => {
+//     console.log('Users database connected');
+//   });
+
+//   usersDB.on('error', (err) => {
+//     console.error('Users database connection error:', err);
+//   });
+
+//   postsDB = mongoose.createConnection(
+//     'mongodb://mo35226_Posts:GrimPost12@mongo.ct8.pl/mo35226_Posts',
+//     {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//       serverSelectionTimeoutMS: 5000,
+//       socketTimeoutMS: 45000,
+//       keepAlive: true,
+//       keepAliveInitialDelay: 300000,
+//       retryWrites: true,
+//       w: 'majority',
+//     }
+//   );
+
+//   postsDB.once('open', () => {
+//     console.log('Posts database connected');
+//   });
+
+//   postsDB.on('error', (err) => {
+//     console.error('Posts database connection error:', err);
+//   });
+// };
+
+// export { mongoose, usersDB, postsDB, connect };
 import mongoose from 'mongoose';
 
 const connect = () => {
   mongoose
-    .connect('mongodb://mo35226_Users:GrimTest12@mongo.ct8.pl/mo35226_Users', {
+    .connect('mongodb://mo35226_Test:GrimTest12@mongo.ct8.pl/mo35226_Test', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
