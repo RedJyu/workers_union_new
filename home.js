@@ -1,13 +1,34 @@
-export const home = async (req, res) => {
-  // Check if user is logged in
-  if (!req.user) {
-    return res.status(401).send('Please authenticate.');
-  }
+import { fetchPosts } from './utility.js';
 
-  // Display user name
-  res.send(`
-    <div>
-      Welcome, ${req.user.name}!
-    </div>
-  `);
+export const home = async (req, res) => {
+  try {
+    const posts = await fetchPosts();
+    let postsHTML = '';
+
+    // Iterate over each post and create HTML markup
+    posts.forEach((post) => {
+      postsHTML += `
+        <div>
+          <h2>${post.title}</h2>
+          <p>${post.content}</p>
+        </div>
+      `;
+    });
+
+    res.send(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Home Page</title>
+      </head>
+      <body>
+        <h1>Posts</h1>
+        ${postsHTML}
+      </body>
+      </html>
+    `);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 };

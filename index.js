@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
 import { home } from './home.js';
 import { auth, requireAdmin } from './auth.js';
+import { fetchPosts } from './utility.js';
 import { signup } from './signup.js';
 import adminRoutes from './adminRoutes.js';
 
@@ -27,7 +28,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/home', auth, home);
+app.get('/home', home);
 
 app.use('/admin', adminRoutes);
 
