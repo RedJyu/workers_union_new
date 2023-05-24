@@ -1,13 +1,16 @@
+import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../../userSchema.js';
 import { loginForm } from '../../views/admin/login.js';
 
-export const signin = async (req, res) => {
-  res.send(loginForm());
-};
+const router = express.Router();
 
-export const login = async (req, res) => {
+router.get('/signin', (req, res) => {
+  res.send(loginForm());
+});
+
+router.post('/signin', async (req, res) => {
   try {
     // Get user from database based on email
     const user = await User.findOne({ email: req.body.email });
@@ -39,4 +42,6 @@ export const login = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Server error.' });
   }
-};
+});
+
+export default router;

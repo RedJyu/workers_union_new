@@ -1,19 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import connect from './mongoose.js';
-import { signin, login } from './routes/admin/login.js';
+// import { signin, login } from './routes/admin/login.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
 import { home } from './home.js';
-import { auth, requireAdmin } from './auth.js';
-import { fetchPosts } from './utility.js';
 import { signup } from './signup.js';
 import adminRoutes from './adminRoutes.js';
+import loginRouter from './routes/admin/login.js';
 
 connect();
 dotenv.config();
-const router = express.Router();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -30,13 +28,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/home', home);
 
-app.use('/admin', adminRoutes);
+app.use('/admin', loginRouter, adminRoutes);
 
-// Route for the signin page
-app.get('/signin', signin);
+// // Route for the signin page
+// app.get('/signin', signin);
 
-// Route for handling the signin form submission
-app.post('/signin', login);
+// // Route for handling the signin form submission
+// app.post('/signin', login);
 signup(app);
 app.get('/signup', signup);
 app.post('/signup', signup);
