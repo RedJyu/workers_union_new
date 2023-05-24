@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import express from 'express';
 import User from './userSchema.js';
 import mongoose from 'mongoose';
+import { signupForm } from './views/admin/signup.js';
 
 export const signup = (app) => {
   app.use(express.urlencoded({ extended: true }));
@@ -12,17 +13,7 @@ export const signup = (app) => {
       res.send(`Welcome, ${req.user.name}!`);
     } else {
       // If the user is not logged in, display the registration form
-      res.send(`
-      <div>
-        <form method="POST">
-          <input name="name" placeholder="name" />
-          <input name="email" placeholder="email" />
-          <input name="password" placeholder="password" type="password" />
-          <input name="passwordConfirmation" placeholder="confirm password" type="password" />
-          <button>Register</button>
-        </form>
-      </div>
-    `);
+      res.send(signupForm());
     }
   });
 
