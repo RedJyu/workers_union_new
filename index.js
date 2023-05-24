@@ -30,11 +30,6 @@ app.get('/home', home);
 
 app.use('/admin', loginRouter, adminRoutes);
 
-// // Route for the signin page
-// app.get('/signin', signin);
-
-// // Route for handling the signin form submission
-// app.post('/signin', login);
 signup(app);
 app.get('/signup', signup);
 app.post('/signup', signup);
