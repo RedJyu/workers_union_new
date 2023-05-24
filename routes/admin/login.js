@@ -1,17 +1,10 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../../userSchema.js';
+import { loginForm } from '../../views/admin/login.js';
 
 export const signin = async (req, res) => {
-  res.send(`
-    <div>
-      <form method="POST">
-        <input name="email" placeholder="email" />
-        <input name="password" placeholder="hasło" />
-        <button> Logowanie </button>
-      </form>
-    </div>
-  `);
+  res.send(loginForm());
 };
 
 export const login = async (req, res) => {
