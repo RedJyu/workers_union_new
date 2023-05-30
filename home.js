@@ -1,4 +1,5 @@
 import { fetchPosts } from './utility.js';
+import { layoutAdmin } from './views/admin/layout.js';
 
 export const home = async (req, res) => {
   try {
@@ -20,9 +21,9 @@ export const home = async (req, res) => {
     // Iterate over each post and create HTML markup
     currentPagePosts.forEach((post) => {
       postsHTML += `
-        <div>
-          <h2>${post.title}</h2>
-          <p>${post.content}</p>
+      <div class="post-container">
+          <h2 class="post-title">${post.title}</h2>
+          <p class="post-content">${post.content}</p>
         </div>
       `;
     });
@@ -33,7 +34,9 @@ export const home = async (req, res) => {
       paginationHTML += `<a href="?page=${page}">${page}</a> `;
     }
 
-    res.send(`
+    res.send(
+      layoutAdmin({
+        content: `
       <!DOCTYPE html>
       <html>
       <head>
@@ -44,13 +47,13 @@ export const home = async (req, res) => {
         ${postsHTML}
 
         <div>
-          <p>Page: ${currentPage}</p>
-          <p>Page Count: ${totalPages}</p>
-          <p>Pagination: ${paginationHTML}</p>
+          <p>${paginationHTML}</p>
         </div>
       </body>
       </html>
-    `);
+    `,
+      })
+    );
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');

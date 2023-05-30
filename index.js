@@ -10,11 +10,13 @@ import { signup } from './signup.js';
 import adminRoutes from './adminRoutes.js';
 import loginRouter from './routes/admin/login.js';
 
-connect();
-dotenv.config();
-
 const app = express();
+app.use(express.static('public'));
+dotenv.config();
+connect();
+
 const port = process.env.PORT || 3000;
+
 app.use(
   cookieSession({
     name: 'session',
@@ -25,6 +27,11 @@ app.use(
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// app.get('/public/css/main.css', (req, res) => {
+//   res.setHeader('Content-Type', 'text/css');
+//   res.sendFile(__dirname + './public/css/main.css');
+// });
 
 app.get('/home', home);
 

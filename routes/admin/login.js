@@ -51,8 +51,8 @@ router.post(
         sameSite: 'Lax',
       });
 
-      // Send success response with token
-      res.json({ message: `Logged in successfully ${user.name}.`, token });
+      // Redirect the user to /admin
+      res.redirect('/admin');
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Server error.' });

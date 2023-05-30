@@ -2,6 +2,7 @@ import express from 'express';
 import { auth, requireAdmin } from './auth.js';
 import { body, validationResult } from 'express-validator';
 import Post from './postSchema.js';
+import { layoutAdmin } from './views/admin/layout.js';
 
 const router = express.Router();
 
@@ -12,23 +13,23 @@ router.get('/', auth, requireAdmin, (req, res) => {
   req.session.errors = [];
   req.session.successMessage = '';
 
-  res.send(`
-    <div>
-      <form method="POST" action="/admin">
-        <input name="title" placeholder="Title" />
-        <input name="content" placeholder="Content" />
-        <button type="submit">Submit</button>
-        ${
-          errors.length > 0
-            ? `<p style="color: red;">${errors.join(', ')}</p>`
-            : ''
-        }
-        ${
-          successMessage ? `<p style="color: green;">${successMessage}</p>` : ''
-        }
-      </form>
-    </div>
-  `);
+  res.send(
+    layoutAdmin({
+      content: `
+  <form method="POST" action="/admin">
+    <input name="title" placeholder="Title" />
+    <textarea name="content" placeholder="Content" /></textarea>
+    <button type="submit">Submit</button>
+    ${
+      errors.length > 0
+        ? `<p class="error-message">${errors.join(', ')}</p>`
+        : ''
+    }
+    ${successMessage ? `<p class="success-message">${successMessage}</p>` : ''}
+  </form>
+  `,
+    })
+  );
 });
 
 router.post(
