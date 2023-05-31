@@ -1,5 +1,5 @@
 import { fetchPosts } from './utility.js';
-import { layoutAdmin } from './views/admin/layout.js';
+import { layoutUser } from './views/user/layout.js';
 
 export const home = async (req, res) => {
   try {
@@ -36,16 +36,15 @@ export const home = async (req, res) => {
     }
 
     res.send(
-      layoutAdmin({
+      layoutUser({
         content: `
-      <!DOCTYPE html>
       <html>
       <head>
         <title>Związek Zawodowy US Grójec</title>
       </head>
       <body>
         <h1>Aktualności</h1>
-        ${postsHTML}
+          ${postsHTML}
         <div>
           <p>${paginationHTML}</p>
         </div>
