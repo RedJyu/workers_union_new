@@ -24,6 +24,7 @@ export const home = async (req, res) => {
       <div class="post-container">
           <h2 class="post-title">${post.title}</h2>
           <p class="post-content">${post.content}</p>
+          <p class="post-time">${post.formattedCreatedAt}</p>
         </div>
       `;
     });
@@ -40,12 +41,11 @@ export const home = async (req, res) => {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Home Page</title>
+        <title>Związek Zawodowy US Grójec</title>
       </head>
       <body>
-        <h1>Posts</h1>
+        <h1>Aktualności</h1>
         ${postsHTML}
-
         <div>
           <p>${paginationHTML}</p>
         </div>

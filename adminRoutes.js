@@ -3,6 +3,7 @@ import { auth, requireAdmin } from './auth.js';
 import { body, validationResult } from 'express-validator';
 import Post from './postSchema.js';
 import { layoutAdmin } from './views/admin/layout.js';
+import multer from 'multer';
 
 const router = express.Router();
 
@@ -19,6 +20,7 @@ router.get('/', auth, requireAdmin, (req, res) => {
   <form method="POST" action="/admin">
     <input name="title" placeholder="Title" />
     <textarea name="content" placeholder="Content" /></textarea>
+    <input name="imageUrl" placeholder="Image URL" />
     <button type="submit">Submit</button>
     ${
       errors.length > 0
@@ -39,6 +41,10 @@ router.post(
   [
     body('title').notEmpty().withMessage('Title is required.'),
     body('content').notEmpty().withMessage('Content is required.'),
+    body('imageUrl')
+      .optional({ checkFalsy: true })
+      .isURL()
+      .withMessage('Invalid image URL.'),
   ],
   async (req, res) => {
     try {
@@ -48,7 +54,7 @@ router.post(
         return res.redirect('/admin');
       }
 
-      const { title, content } = req.body;
+      const { title, content, imageUrl } = req.body;
 
       const newPost = new Post({ title, content });
 

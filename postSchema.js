@@ -9,6 +9,21 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+postSchema.virtual('formattedCreatedAt').get(function () {
+  return this.createdAt.toLocaleDateString(undefined, {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  });
 });
 
 const Post = mongoose.model('Post', postSchema);
