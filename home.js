@@ -22,9 +22,9 @@ export const home = async (req, res) => {
     currentPagePosts.forEach((post) => {
       postsHTML += `
       <div class="post-container">
+      <p class="post-time">${post.formattedCreatedAt}</p>
           <h2 class="post-title">${post.title}</h2>
           <p class="post-content">${post.content}</p>
-          <p class="post-time">${post.formattedCreatedAt}</p>
         </div>
       `;
     });
