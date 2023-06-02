@@ -48,9 +48,10 @@ export const home = async (req, res) => {
         <a href="#aktualnosci">Aktualności</a>
         <a href="#o-nas">O nas</a>
         <a href="#forum">Forum</a>
-      </div>
-    <h1>Aktualności</h1>
-    ${postsHTML}
+      </div class="card-container">
+    <h1 class="main">Aktualności</h1>
+         ${postsHTML}
+         </div>
    <div>
       <p>${paginationHTML}</p>
     </div>
