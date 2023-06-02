@@ -38,18 +38,25 @@ export const home = async (req, res) => {
     res.send(
       layoutUser({
         content: `
-      <html>
+    <html>
       <head>
         <title>Związek Zawodowy US Grójec</title>
       </head>
-      <body>
-        <h1>Aktualności</h1>
-          ${postsHTML}
-        <div>
-          <p>${paginationHTML}</p>
-        </div>
+    <body>
+       <div class="navbar">
+         <img src="logo.png" alt="Logo" style="height: 40px; width: auto;">
+        <a href="#aktualnosci">Aktualności</a>
+        <a href="#o-nas">O nas</a>
+        <a href="#forum">Forum</a>
+      </div>
+    <h1>Aktualności</h1>
+    ${postsHTML}
+   <div>
+      <p>${paginationHTML}</p>
+    </div>
+     <script src="utilTest.js"></script>
       </body>
-      </html>
+    </html>
     `,
       })
     );

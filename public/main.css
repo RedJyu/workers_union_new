@@ -4,10 +4,36 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color1: #0088e9;
+  --color2: #40a1f6;
+  --color3: #75baff;
+  --color4: #9fd5ff;
+  --color5: #c6efff;
+}
+
+/* NAV */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color1);
+  padding: 10px 20px;
+  z-index: 9999;
+}
+
+.navbar a {
+  text-decoration: none;
+  margin-right: 10px;
+  font-weight: bold;
+  color: black;
+}
+/*  */
 .container {
   margin: 20px;
-  padding: 20px;
-  background-color: #d7cccc;
+  padding: 10px;
+  background-color: var(--color5);
 }
 
 .container form {
@@ -52,7 +78,7 @@
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #aaaabc;
   border-radius: 5px;
 }
 
