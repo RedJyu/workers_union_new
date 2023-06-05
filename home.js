@@ -5,7 +5,7 @@ export const home = async (req, res) => {
   try {
     // Get the current page from the request query parameters
     const currentPage = parseInt(req.query.page) || 1;
-    const postsPerPage = 10;
+    const postsPerPage = 5;
 
     const posts = await fetchPosts();
     const totalPosts = posts.length;
@@ -21,31 +21,35 @@ export const home = async (req, res) => {
     // Iterate over each post and create HTML markup
     currentPagePosts.forEach((post) => {
       postsHTML += `
-      <div class="post-container">
-  <p class="post-time">${post.formattedCreatedAt}</p>
-  <h2 class="post-title">${post.title}</h2>
-  <p class="post-content">
+  <div class="post-container">
+    <div class="left-column">
+      <p class="post-time">${post.formattedCreatedAt}</p>
+      <h2 class="post-title">${post.title}</h2>
+     <p class="post-content">
     ${
       post.content.length > 100
         ? post.content.slice(0, 100) + '...'
         : post.content
     }
   </p>
-  <div class="link-container">
-  ${
-    post.content.length > 50
-      ? `<a id="postMore" href="/post/${post.id}">Read more</a>`
-      : ''
-  }
+    </div>
+    <div class="right-column">
+      <div class="link-container">
+        ${
+          post.content.length > 50
+            ? `<a id="postMore" href="/post/${post.id}">Read more</a>`
+            : ''
+        }
+      </div>
+    </div>
   </div>
-</div>
-      `;
+  `;
     });
 
     // Generate pagination links
     let paginationHTML = '';
     for (let page = 1; page <= totalPages; page++) {
-      paginationHTML += `<a href="?page=${page}">${page}</a> `;
+      paginationHTML += `<a ID="pagination" href="?page=${page}">${page}</a> `;
     }
 
     res.send(
