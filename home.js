@@ -1,4 +1,4 @@
-import { fetchPosts } from './utility.js';
+import { fetchPosts, fetchPostById } from './utility.js';
 import { layoutUser } from './views/user/layout.js';
 
 export const home = async (req, res) => {
@@ -22,10 +22,17 @@ export const home = async (req, res) => {
     currentPagePosts.forEach((post) => {
       postsHTML += `
       <div class="post-container">
-      <p class="post-time">${post.formattedCreatedAt}</p>
-          <h2 class="post-title">${post.title}</h2>
-          <p class="post-content">${post.content}</p>
-        </div>
+  <p class="post-time">${post.formattedCreatedAt}</p>
+  <h2 class="post-title">${post.title}</h2>
+  <p class="post-content">
+    ${
+      post.content.length > 50
+        ? post.content.slice(0, 50) + '...'
+        : post.content
+    }
+  </p>
+  ${post.content.length > 50 ? `<a href="/post/${post.id}">Read more</a>` : ''}
+</div>
       `;
     });
 
@@ -55,10 +62,41 @@ export const home = async (req, res) => {
    <div>
       <p>${paginationHTML}</p>
     </div>
-     <script src="utilTest.js"></script>
-      </body>
+    <script src="utilTest.js"></script>
+    <script src="postUtil.js"></script>
+    </body>
     </html>
     `,
+      })
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+export const viewPost = async (req, res) => {
+  try {
+    const postId = req.params.id; // Assuming you have a post ID
+    const post = await fetchPostById(postId);
+
+    res.send(
+      layoutUser({
+        content: `
+        <html>
+          <head>
+            <title>Post - ${post.title}</title>
+          </head>
+          <body>
+            <div class="post-container">
+              <p class="post-time">${post.formattedCreatedAt}</p>
+              <h2 class="post-title">${post.title}</h2>
+              <p class="post-content">${post.content}</p>
+              <a href="/home">Go to Home</a>
+            </div>
+          </body>
+        </html>
+      `,
       })
     );
   } catch (error) {

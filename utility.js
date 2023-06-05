@@ -9,3 +9,13 @@ export async function fetchPosts() {
     throw error;
   }
 }
+
+export async function fetchPostById(postId) {
+  try {
+    const post = await Post.findById(postId);
+    return post;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}

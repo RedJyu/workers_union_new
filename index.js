@@ -5,7 +5,7 @@ import connect from './mongoose.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
-import { home } from './home.js';
+import { home, viewPost } from './home.js';
 import { signup } from './signup.js';
 import adminRoutes from './adminRoutes.js';
 import loginRouter from './routes/admin/login.js';
@@ -28,12 +28,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/public/css/main.css', (req, res) => {
-//   res.setHeader('Content-Type', 'text/css');
-//   res.sendFile(__dirname + './public/css/main.css');
-// });
-
 app.get('/home', home);
+app.get('/post/:id', viewPost);
 
 app.use('/admin', loginRouter, adminRoutes);
 
