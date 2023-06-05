@@ -34,7 +34,6 @@ body {
   text-decoration: none;
   margin-right: 10px;
   font-weight: bold;
-  color: black;
 }
 /*  */
 .container {
@@ -61,20 +60,6 @@ body {
   cursor: pointer;
 }
 
-.container a {
-  text-decoration: none;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: var(--color1);
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.container button:hover {
-  background-color: #45a049;
-}
-
 .container .error-message {
   color: red;
   margin-top: 10px;
@@ -96,10 +81,28 @@ body {
   text-align: center;
 }
 /* CSS for post-container card */
+.container #postMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.link-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.post-container {
+.post-container-full {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
@@ -108,6 +111,30 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+
+.post-container {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px;
+}
+
+.post-content .post-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.post-content p,
+.post-content h2 {
+  text-align: center;
 }
 
 .post-time {
@@ -126,18 +153,18 @@ body {
   color: #555;
   font-size: 16px;
 }
-/* Style for the expanded content */
-.expanded-content {
-  display: none;
-  margin-top: 10px;
-}
 
-/* Style for the "Read more" button */
-.post-expand-button {
-  background-color: #f5f5f5;
+.container #goHome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
   border: none;
-  padding: 5px 10px;
-  color: #333;
+  border-radius: 20px;
   cursor: pointer;
 }
 

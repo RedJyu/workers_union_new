@@ -26,12 +26,18 @@ export const home = async (req, res) => {
   <h2 class="post-title">${post.title}</h2>
   <p class="post-content">
     ${
-      post.content.length > 50
-        ? post.content.slice(0, 50) + '...'
+      post.content.length > 100
+        ? post.content.slice(0, 100) + '...'
         : post.content
     }
   </p>
-  ${post.content.length > 50 ? `<a href="/post/${post.id}">Read more</a>` : ''}
+  <div class="link-container">
+  ${
+    post.content.length > 50
+      ? `<a id="postMore" href="/post/${post.id}">Read more</a>`
+      : ''
+  }
+  </div>
 </div>
       `;
     });
@@ -77,7 +83,7 @@ export const home = async (req, res) => {
 
 export const viewPost = async (req, res) => {
   try {
-    const postId = req.params.id; // Assuming you have a post ID
+    const postId = req.params.id;
     const post = await fetchPostById(postId);
 
     res.send(
@@ -88,11 +94,11 @@ export const viewPost = async (req, res) => {
             <title>Post - ${post.title}</title>
           </head>
           <body>
-            <div class="post-container">
+            <div class="post-container-full">
               <p class="post-time">${post.formattedCreatedAt}</p>
               <h2 class="post-title">${post.title}</h2>
-              <p class="post-content">${post.content}</p>
-              <a href="/home">Go to Home</a>
+              <p class="post-content-full">${post.content}</p>
+              <a ID="goHome"href="/home">Go to Home</a>
             </div>
           </body>
         </html>
