@@ -66,7 +66,7 @@ export const home = async (req, res) => {
         <a href="#o-nas">O nas</a>
         <a href="#forum">Forum</a>
       </div class="card-container">
-    <h1 class="main">Aktualności</h1>
+  
          ${postsHTML}
          </div>
    <div>
