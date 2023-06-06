@@ -114,7 +114,6 @@ body {
 .post-container {
   background-image: linear-gradient(147deg, #e4e8ff 40%, #1490dc 74%);
   border-radius: 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
   display: grid;
