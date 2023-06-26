@@ -37,7 +37,7 @@ export const home = async (req, res) => {
       <div class="link-container">
         ${
           post.content.length > 50
-            ? `<a id="postMore" href="/post/${post.id}">Read more</a>`
+            ? `<a id="postMore" href="/post/${post.id}">więcej ></a>`
             : ''
         }
       </div>
@@ -61,14 +61,13 @@ export const home = async (req, res) => {
       </head>
     <body>
        <div class="navbar">
-         <img src="logo.png" alt="Logo" style="height: 40px; width: auto;">
+         <img src="logo.png" alt="Logo">
         <a href="#aktualnosci">Aktualności</a>
         <a href="#o-nas">O nas</a>
         <a href="#forum">Forum</a>
       </div class="card-container">
-  
          ${postsHTML}
-         </div>
+       </div>
    <div>
       <p>${paginationHTML}</p>
     </div>
@@ -102,7 +101,7 @@ export const viewPost = async (req, res) => {
               <p class="post-time">${post.formattedCreatedAt}</p>
               <h2 class="post-title">${post.title}</h2>
               <p class="post-content-full">${post.content}</p>
-              <a ID="goHome"href="/home">Go to Home</a>
+              <a ID="goHome"href="/home">< wróć</a>
             </div>
           </body>
         </html>
