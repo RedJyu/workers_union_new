@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import connect from './mongoose.js';
-// import { signin, login } from './routes/admin/login.js';
+import router from './routes/admin/login.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
@@ -32,6 +32,7 @@ app.get('/home', home);
 app.get('/post/:id', viewPost);
 
 app.use('/admin', loginRouter, adminRoutes);
+app.use(router);
 
 signup(app);
 app.get('/signup', signup);
