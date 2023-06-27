@@ -56,7 +56,7 @@ router.post(
 
       const { title, content, imageUrl } = req.body;
 
-      const newPost = new Post({ title, content });
+      const newPost = new Post({ title, content, imageUrl });
 
       await newPost.save();
 

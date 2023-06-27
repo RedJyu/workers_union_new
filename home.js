@@ -22,7 +22,6 @@ export const home = async (req, res) => {
     currentPagePosts.forEach((post) => {
       postsHTML += `
   <div class="post-container">
-    
       <p class="post-time">${post.formattedCreatedAt}</p>
       <h2 class="post-title">${post.title}</h2>
      <p class="post-content">
@@ -32,14 +31,11 @@ export const home = async (req, res) => {
         : post.content
     }
   </p>
-    
-   
         ${
           post.content.length > 50
             ? `<button id="postMore" onclick="window.location.href='/post/${post.id}'">więcej ></button>`
             : ''
         }
-      
   </div>
   `;
     });
