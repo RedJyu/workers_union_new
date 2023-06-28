@@ -26,7 +26,7 @@ html {
   color-scheme: light dark;
 }
 img {
-  max-width: 90%;
+  max-width: 100%;
   /* display: block; */
 }
 
@@ -118,6 +118,7 @@ a:focus {
 }
 
 .post-content {
+  overflow: hidden;
   text-align: center;
 }
 /* form */
@@ -139,7 +140,7 @@ a:focus {
 /* button */
 
 button {
-  margin: 10px;
+  margin: auto;
   padding: 15px 30px;
   text-align: center;
   text-transform: uppercase;
@@ -171,4 +172,46 @@ button:hover {
 }
 button:active {
   transform: scale(0.95);
+}
+/* pagination */
+
+.pagination a {
+  padding: 10px 10px;
+  text-align: center;
+  transition: 0.5s;
+  color: white;
+  border-radius: 10px;
+  border: 0px;
+  font-weight: 400;
+  box-shadow: 0px 0px 14px -7px #5468ff;
+  background-image: linear-gradient(
+    45deg,
+    #5468ff 0%,
+    #5ecafd 51%,
+    #5468ff 100%
+  );
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.pagination .current-page {
+  padding: 10px 10px;
+  text-align: center;
+  transition: 0.5s;
+  color: white;
+  border-radius: 10px;
+  border: 0px;
+  font-weight: 400;
+  box-shadow: 0px 0px 14px -7px #5468ff;
+  background-image: linear-gradient(
+    45deg,
+    #5468ff 0%,
+    #da8d1b 51%,
+    #5468ff 100%
+  );
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }

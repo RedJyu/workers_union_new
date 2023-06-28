@@ -20,35 +20,61 @@ export const home = async (req, res) => {
 
     // Iterate over each post and create HTML markup
     currentPagePosts.forEach((post) => {
+      const shortenedContent =
+        post.content.length > 100
+          ? post.content.slice(0, 100) + '...'
+          : post.content;
+      const postImage = post.imageUrl ? post.imageUrl : 'default.jpg';
+
       postsHTML += `
-  <div class="post-container">
+    <div class="post-container">
       <p class="post-time">${post.formattedCreatedAt}</p>
+      <div class="img">
+        <img src="${postImage}" alt="Post Image" />
+      </div>
       <h2 class="post-title">${post.title}</h2>
-     <p class="post-content">
-    ${
-      post.content.length > 100
-        ? post.content.slice(0, 100) + '...'
-        : post.content
-    }
-  </p>
-  <div class="img">  ${
-    post.imageUrl ? `<img src="${post.imageUrl}" alt="Post Image" />` : ''
-  }</div>
-        ${
-          post.content.length > 50
-            ? `<button id="postMore" onclick="window.location.href='/post/${post.id}'">więcej ></button>`
-            : ''
-        }
-       
-        
-  </div>
+      <p class="post-content">${shortenedContent}</p>
+      
+      ${
+        post.content.length > 50
+          ? `
+          <button class="read-more-button" data-post-id="${post.id}">więcej ></button>
+          <div class="full-content" id="post-${post.id}" style="display: none;">
+            <p class="post-content-full">${post.content}</p>
+            <a class="go-back-button" href="#">wróć</a>
+          </div>
+        `
+          : ''
+      }
+    </div>
   `;
     });
 
     // Generate pagination links
     let paginationHTML = '';
+
+    // Add Previous Page link if not on the first page
+    if (currentPage > 1) {
+      paginationHTML += `<a ID="pagination" href="?page=${
+        currentPage - 1
+      }">&lt;</a> `;
+    }
+
+    // Add pagination links
     for (let page = 1; page <= totalPages; page++) {
-      paginationHTML += `<a ID="pagination" href="?page=${page}">${page}</a> `;
+      // Display all pages except the current page
+      if (page === currentPage) {
+        paginationHTML += `<span class="current-page">${page}</span> `;
+      } else {
+        paginationHTML += `<a ID="pagination" href="?page=${page}">${page}</a> `;
+      }
+    }
+
+    // Add Next Page link if not on the last page
+    if (currentPage < totalPages) {
+      paginationHTML += `<a ID="pagination" href="?page=${
+        currentPage + 1
+      }">&gt;</a> `;
     }
 
     res.send(
@@ -68,10 +94,8 @@ export const home = async (req, res) => {
          ${postsHTML}
        </div>
    <div>
-      <p class="pagination">${paginationHTML}</p>
+      <div class="pagination current-page">${paginationHTML}</div>
     </div>
-    <script src="utilTest.js"></script>
-    <script src="postUtil.js"></script>
     </body>
     </html>
     `,
