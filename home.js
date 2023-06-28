@@ -1,5 +1,6 @@
 import { fetchPosts, fetchPostById } from './utility.js';
 import { layoutUser } from './views/user/layout.js';
+import generatePaginationHTML from './pagination.js';
 
 export const home = async (req, res) => {
   try {
@@ -35,47 +36,17 @@ export const home = async (req, res) => {
       <h2 class="post-title">${post.title}</h2>
       <p class="post-content">${shortenedContent}</p>
       
-      ${
-        post.content.length > 50
-          ? `
-          <button class="read-more-button" data-post-id="${post.id}">więcej ></button>
-          <div class="full-content" id="post-${post.id}" style="display: none;">
-            <p class="post-content-full">${post.content}</p>
-            <a class="go-back-button" href="#">wróć</a>
-          </div>
-        `
-          : ''
-      }
+    ${
+      post.content.length > 50
+        ? `
+    <button class="read-more-button" onclick="window.location.href='/post/${post.id}'">więcej ></button>
+  `
+        : ''
+    }
     </div>
   `;
     });
-
-    // Generate pagination links
-    let paginationHTML = '';
-
-    // Add Previous Page link if not on the first page
-    if (currentPage > 1) {
-      paginationHTML += `<a ID="pagination" href="?page=${
-        currentPage - 1
-      }">&lt;</a> `;
-    }
-
-    // Add pagination links
-    for (let page = 1; page <= totalPages; page++) {
-      // Display all pages except the current page
-      if (page === currentPage) {
-        paginationHTML += `<span class="current-page">${page}</span> `;
-      } else {
-        paginationHTML += `<a ID="pagination" href="?page=${page}">${page}</a> `;
-      }
-    }
-
-    // Add Next Page link if not on the last page
-    if (currentPage < totalPages) {
-      paginationHTML += `<a ID="pagination" href="?page=${
-        currentPage + 1
-      }">&gt;</a> `;
-    }
+    const paginationHTML = generatePaginationHTML(currentPage, totalPages);
 
     res.send(
       layoutUser({
