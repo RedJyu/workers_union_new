@@ -25,10 +25,10 @@
 html {
   color-scheme: light dark;
 }
-/* img {
-  max-width: 100%;
-  display: block;
-} */
+img {
+  max-width: 90%;
+  /* display: block; */
+}
 
 body {
   /* background-color: var(--background); */

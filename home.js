@@ -31,11 +31,16 @@ export const home = async (req, res) => {
         : post.content
     }
   </p>
+  <div class="img">  ${
+    post.imageUrl ? `<img src="${post.imageUrl}" alt="Post Image" />` : ''
+  }</div>
         ${
           post.content.length > 50
             ? `<button id="postMore" onclick="window.location.href='/post/${post.id}'">więcej ></button>`
             : ''
         }
+       
+        
   </div>
   `;
     });
@@ -88,7 +93,7 @@ export const viewPost = async (req, res) => {
         content: `
         <html>
           <head>
-            <title>Post - ${post.title}</title>
+            <title> ${post.title}</title>
           </head>
           <body>
             <div class="post-container-full">
