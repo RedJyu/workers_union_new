@@ -70,20 +70,28 @@ a:focus {
 
 /* NAV */
 .navbar {
-  top: 0;
-  left: 0;
-  width: auto;
-  background: var(--accent);
+  display: grid;
+  justify-content: center;
+  background: var(--primary-button);
   padding: 10px 20px;
-  /* z-index: 9999; */
 }
-
+.logo {
+  max-height: 100px;
+  max-width: 100px;
+  margin: auto;
+}
 .navbar a {
-  color: var(--text);
+  margin-right: 10px;
+  color: #f6f4e6;
   text-decoration: none;
-  margin-right: 0.5em;
-  font-weight: bold;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 400;
 }
+.navbar a:last-child {
+  margin-right: 0;
+}
+/* end nav */
 
 .container {
   width: min(100% - 1rem, 55ch);

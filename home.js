@@ -58,10 +58,14 @@ export const home = async (req, res) => {
       </head>
     <body>
        <div class="navbar">
-         <img src="logo.png" alt="Logo">
+       <div class="logo">
+        <img src="logo.png" alt="Logo">
+        </div>
+        <div class="links">
         <a href="#">Aktualności</a>
         <a href="#">O nas</a>
         <a href="#">Forum</a>
+        </div>
         </div>
       <div class="card-container">
          ${postsHTML}
