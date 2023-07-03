@@ -34,6 +34,7 @@ export const home = async (req, res) => {
         <img src="${postImage}" alt="Post Image" />
       </div>
       <h2 class="post-title">${post.title}</h2>
+      <div class="underline"></div>
       <p class="post-content">${shortenedContent}</p>
       
     ${
@@ -58,10 +59,11 @@ export const home = async (req, res) => {
     <body>
        <div class="navbar">
          <img src="logo.png" alt="Logo">
-        <a href="#aktualnosci">Aktualności</a>
-        <a href="#o-nas">O nas</a>
-        <a href="#forum">Forum</a>
-      </div class="card-container">
+        <a href="#">Aktualności</a>
+        <a href="#">O nas</a>
+        <a href="#">Forum</a>
+        </div>
+      <div class="card-container">
          ${postsHTML}
        </div>
    <div>
@@ -95,7 +97,7 @@ export const viewPost = async (req, res) => {
               <p class="post-time">${post.formattedCreatedAt}</p>
               <h2 class="post-title">${post.title}</h2>
               <p class="post-content-full">${post.content}</p>
-              <a ID="goHome"href="/home">< wróć</a>
+             <button id="goHome" onclick="window.location.href='/home'">&lt; Wróć</button>
             </div>
           </body>
         </html>
