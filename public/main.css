@@ -43,6 +43,7 @@ h1,
 h2,
 h3 {
   font-family: var(--ff-main);
+  font-size: var(--step-1);
 }
 p {
   font-family: var(--ff-sec);
@@ -133,7 +134,6 @@ a:focus {
 }
 footer p {
   padding: 5px;
-  vertical-align: middle;
   text-align: center;
   font-size: 10px;
 }
@@ -156,15 +156,18 @@ footer p {
   text-decoration: none;
 }
 
-.post-content {
-  overflow: auto;
-  word-wrap: break-word;
+.post-content,
+.post-content-full {
+  /* overflow: auto; */
   text-align: center;
   margin-bottom: 0.5rem;
-}
-.post-content-full {
+  padding: 0.5rem;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+.post-title {
+  padding: 0.5rem;
 }
 /* form */
 .container .error-message {
