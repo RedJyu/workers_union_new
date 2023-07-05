@@ -73,7 +73,9 @@ export const home = async (req, res) => {
    <div>
       <div class="pagination current-page">${paginationHTML}</div>
     </div>
-    <div class="footer"> footer </div>
+   <footer>
+  <p>&copy; 2023 Piotr Stężycki.  Wszelkie prawa zastrzeżone.</p>
+</footer>
     </body>
     </html>
     `,

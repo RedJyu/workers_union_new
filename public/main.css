@@ -131,6 +131,12 @@ a:focus {
 .pagination {
   text-align: center;
 }
+footer p {
+  padding: 5px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 10px;
+}
 /* post card */
 .left-column {
   display: flex;
@@ -154,6 +160,7 @@ a:focus {
   overflow: auto;
   word-wrap: break-word;
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 .post-content-full {
   white-space: pre-wrap;
