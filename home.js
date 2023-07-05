@@ -94,18 +94,19 @@ export const viewPost = async (req, res) => {
       layoutUser({
         content: `
         <html>
-          <head>
-            <title> ${post.title}</title>
-          </head>
-          <body>
-            <div class="post-container-full">
-              <p class="post-time">${post.formattedCreatedAt}</p>
-              <h2 class="post-title">${post.title}</h2>
-              <p class="post-content-full">${post.content}</p>
-             <button id="goHome" onclick="window.location.href='/home'">&lt; Wróć</button>
-            </div>
-          </body>
-        </html>
+  <head>
+    <title>${post.title}</title>
+  </head>
+  <body>
+    <div class="post-container-full">
+      <p class="post-time">${post.formattedCreatedAt}</p>
+      <h2 class="post-title">${post.title}</h2>
+      <pre class="post-content-full">${post.content}</pre>
+      <button id="goHome" onclick="window.location.href='/home'">&lt; Wróć</button>
+    </div>
+  </body>
+</html>
+
       `,
       })
     );
