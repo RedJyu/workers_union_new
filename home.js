@@ -73,6 +73,7 @@ export const home = async (req, res) => {
    <div>
       <div class="pagination current-page">${paginationHTML}</div>
     </div>
+    <div class="footer"> footer </div>
     </body>
     </html>
     `,
