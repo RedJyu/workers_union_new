@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Work+Sans:wght@400;700&display=swap');
 
-* {
+*,
+::after,
+::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 :root {
+  --white: white;
+  --smoke: whitesmoke;
   --text: #001119;
   --background: #cdeffe;
   --primary-button: #5468ff;
@@ -14,6 +19,8 @@
 
   --ff-main: 'Work Sans', sans-serif;
   --ff-sec: 'Merriweather', serif;
+
+  --transition: all 0.3s linear;
 
   --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
   --step-1: clamp(1.35rem, calc(1.2rem + 0.73vw), 1.77rem);
@@ -30,7 +37,7 @@ img {
 }
 
 body {
-  background-color: white;
+  background-color: var(--white);
   font-size: var(--step-0);
   color: var(--text);
   line-height: 1.5;
@@ -67,7 +74,7 @@ a:focus {
 }
 
 /* NAV */
-.navbar {
+/* .navbar {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   grid-gap: 3rem;
@@ -103,7 +110,7 @@ a:focus {
 }
 .navbar a:hover ~ .navbar {
   background-position: right center;
-}
+} */
 /* end nav */
 
 .container {
@@ -116,7 +123,7 @@ a:focus {
 
 .post-container,
 .post-container-full {
-  background-color: whitesmoke;
+  background-color: var(--smoke);
   border: 0;
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
@@ -194,7 +201,7 @@ button {
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;
+  color: var(--white);
   border-radius: 10px;
   display: block;
   border: 0px;
@@ -215,9 +222,23 @@ button {
 
 button:hover {
   background-position: right center;
+  animation: backgroundAnimation 2s infinite;
   color: #fff;
   text-decoration: none;
 }
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position: right center;
+  }
+  50% {
+    background-position: initial;
+  }
+  100% {
+    background-position: right center;
+  }
+}
+
 button:active {
   transform: scale(0.95);
 }
@@ -253,3 +274,43 @@ button:active {
     grid-template-columns: repeat(3, 1fr);
   }
 } */
+
+/* New Nav */
+nav {
+  background: white;
+  box-shadow: var(--primary-button);
+  line-height: 1;
+}
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.nav-toggle {
+  font-size: 1.5rem;
+  transition: var(--transition);
+  max-width: 10rem;
+}
+.logo {
+  margin-bottom: 0;
+  font-size: var(--step-1);
+}
+.logo span {
+  color: var(--primary-button);
+}
+.links a {
+  text-transform: capitalize;
+  letter-spacing: 0.2rem;
+  display: block;
+  padding: 0.75rem 1rem;
+  transition: var(--transition);
+}
+.links a:hover {
+  background: var(--primary-button);
+  color: var(--white);
+  padding-left: 1.5rem;
+}
+.links {
+  margin: 0;
+}
