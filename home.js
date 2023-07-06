@@ -57,16 +57,20 @@ export const home = async (req, res) => {
         <title>Związek Zawodowy US Grójec</title>
       </head>
     <body>
-       <div class="navbar">
-       <div class="logo">
-        <img src="logo.png" alt="Logo">
+   <nav>
+        <div class="nav-center">
+            <div class="nav-header">
+                <h4 class="logo">Związek Zawodowy U. S. <span>Grójec</span></h4>
+                <button type="button" class="nav-toggle"><i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="links">
+                <li><a href="/home">Aktualności</a></li>
+                <li><a href="/about">O Nas</a></li>
+                <li><a href="/forum">Forum</a></li>
+            </ul>
         </div>
-        <div class="links">
-        <a href="#">Aktualności</a>
-        <a href="#">O nas</a>
-        <a href="#">Forum</a>
-        </div>
-        </div>
+    </nav>
       <div class="card-container">
          ${postsHTML}
        </div>
