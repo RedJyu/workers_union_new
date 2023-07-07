@@ -272,8 +272,13 @@ button:active {
 }
 .links {
   margin: 0;
+  height: 0;
+  overflow: hidden;
+  transition: var(--transition);
 }
-
+.show-links {
+  height: 7.9rem;
+}
 @media (width >= 768px) {
   .container {
     width: 80%;
@@ -288,6 +293,7 @@ button:active {
     justify-content: space-between;
   }
   .links {
+    height: auto;
     display: flex;
   }
 }

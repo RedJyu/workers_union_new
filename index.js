@@ -9,6 +9,8 @@ import { home, viewPost } from './home.js';
 import { signup } from './signup.js';
 import adminRoutes from './adminRoutes.js';
 import loginRouter from './routes/admin/login.js';
+import cors from 'cors';
+import Post from './postSchema.js';
 
 const app = express();
 app.use(express.static('public'));
@@ -27,9 +29,28 @@ app.use(
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get('/home', home);
 app.get('/post/:id', viewPost);
+
+app.get('/api/posts', async (req, res) => {
+  try {
+    const { skip, limit } = req.query;
+
+    const posts = await Post.find()
+      .sort({ createdAt: -1 })
+      .skip(parseInt(skip))
+      .limit(parseInt(limit));
+
+    const totalPosts = await Post.countDocuments();
+
+    res.json({ posts, totalPosts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 app.use('/admin', loginRouter, adminRoutes);
 app.use(router);
