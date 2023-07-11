@@ -34,14 +34,17 @@ function fetchPosts(page) {
         const postImage = post.imageUrl ? post.imageUrl : 'default.jpg';
 
         postElement.innerHTML = `
+        <div class="card-content">
         <p class="post-time">${post.formattedCreatedAt}</p>
-        <div class="img">
+        <div class="img-container">
         <img src="${postImage}" alt="Post Image" />
       </div>
       <h2>${post.title}</h2>
-      <div class="underline"></div>
+      <div class="underline-container">
+    <div class="underline"></div>
+  </div>
       <p class="post-content">${truncatedContent}</p>
-      
+      </div>
     `;
 
         if (post.content.length > 100) {
