@@ -51,12 +51,35 @@ function fetchPosts(page) {
           const fullContentButton = document.createElement('button');
           fullContentButton.textContent = 'Read Full Post';
 
-          fullContentButton.addEventListener('click', () => {
-            // Assuming the post object is defined and contains the postId property
-            const postId = post.postId;
+          let isFullContentDisplayed = false;
 
-            // Redirect to new page with full post content
-            window.location.href = `full-post.html?id=${postId}`;
+          fullContentButton.addEventListener('click', () => {
+            if (!isFullContentDisplayed) {
+              // Hide all other post elements
+              const allPostElements = document.querySelectorAll('.post');
+              allPostElements.forEach((element) => {
+                element.style.display = 'none';
+              });
+
+              // Show only the clicked post element
+              postElement.style.display = 'block';
+              postElement.querySelector('.post-content').textContent =
+                post.content;
+
+              fullContentButton.textContent = 'Collapse';
+              isFullContentDisplayed = true;
+            } else {
+              // Show all post elements again
+              const allPostElements = document.querySelectorAll('.post');
+              allPostElements.forEach((element) => {
+                element.style.display = 'block';
+              });
+
+              postElement.querySelector('.post-content').textContent =
+                truncatedContent;
+              fullContentButton.textContent = 'Read Full Post';
+              isFullContentDisplayed = false;
+            }
           });
 
           postElement.appendChild(fullContentButton);

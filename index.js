@@ -52,6 +52,64 @@ app.get('/post/:id', viewPost);
 //   }
 // });
 
+// app.get('/api/posts/:id', async (req, res) => {
+//   try {
+//     const postId = req.params.id;
+
+//     const post = await Post.findById(postId);
+
+//     if (!post) {
+//       return res.status(404).json({ error: 'Post not found' });
+//     }
+
+//     res.json({ post });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+app.get('/api/posts/:id', async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    res.json(post); // Return the post data as JSON
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/post/:postId', async (req, res) => {
+  try {
+    const postId = req.params.postId;
+
+    const post = await Post.findOne({ postId });
+
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    // Assuming you have the HTML content stored in the `fullPostHTML` variable
+    const fullPostHTML =
+      '<html><body><h1>' +
+      post.title +
+      '</h1><p>' +
+      post.content +
+      '</p></body></html>';
+
+    res.send(fullPostHTML);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.get('/api/posts', async (req, res) => {
   try {
     const { skip, limit } = req.query;
@@ -75,38 +133,21 @@ app.get('/api/posts', async (req, res) => {
   }
 });
 
-app.get('/post/:postId', async (req, res) => {
-  try {
-    const postId = req.params.postId;
+// app.get('/post/:postId', async (req, res) => {
+//   try {
+//     const postId = req.params.postId;
 
-    const post = await Post.findById(postId);
+//     const post = await Post.findById(postId);
 
-    if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
-    }
-
-    // const fullPostHTML = `
-    //   <!DOCTYPE html>
-    //   <html>
-    //   <head>
-    //     <title>Full Post</title>
-    //     <style>
-    //       /* Define your CSS styles for the full post page */
-    //     </style>
-    //   </head>
-    //   <body>
-    //     <h1>${post.title}</h1>
-    //     <p>${post.content}</p>
-    //   </body>
-    //   </html>
-    // `;
-
-    res.send(fullPostHTML);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+//     if (!post) {
+//       return res.status(404).json({ error: 'Post not found' });
+//     }
+//     res.send(fullPostHTML);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
 
 app.use('/admin', loginRouter, adminRoutes);
 app.use(router);

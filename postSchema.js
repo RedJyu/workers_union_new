@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
-
+import shortid from 'shortid';
 const postSchema = new mongoose.Schema({
+  postId: {
+    type: String,
+    unique: true,
+    default: shortid.generate,
+  },
   title: {
     type: String,
     required: true,
