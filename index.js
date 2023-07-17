@@ -37,13 +37,10 @@ app.get('/post/:id', viewPost);
 app.get('/api/posts/:postId', async (req, res) => {
   try {
     const postId = req.params.postId;
-
     const post = await Post.findOne({ postId });
-
     if (!post) {
       return res.status(404).json({ error: 'Post not found' });
     }
-
     res.json({ post });
   } catch (error) {
     console.error(error);
