@@ -300,8 +300,4 @@ button:active {
     height: auto;
     display: flex;
   }
-
-  .full {
-    background-color: red;
-  }
 }

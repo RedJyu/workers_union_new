@@ -58,12 +58,15 @@ p {
   justify-content: center;
   list-style: none;
   overflow: hidden;
-  padding: 15px;
+  padding: 1rem;
   position: relative;
   text-align: center;
   text-decoration: none;
   width: min(100% - 1rem, 55ch);
   margin-inline: auto;
+}
+#post-content {
+  padding-bottom: 1rem;
 }
 .underline-container {
   display: flex;
@@ -76,7 +79,8 @@ p {
   border-radius: 20px;
   background-color: var(--primary-button);
 }
-#post-title {
+#post-title,
+#post-title-full {
   text-transform: capitalize;
 }
 button {
@@ -102,7 +106,7 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 30%;
+  width: 100%;
 }
 #prevButton,
 #nextButton {
@@ -110,4 +114,35 @@ button {
   white-space: nowrap;
   text-align: center;
   padding: 5px;
+}
+button:hover {
+  background-position: right center;
+  animation: backgroundAnimation 2s infinite;
+  color: #fff;
+  text-decoration: none;
+}
+@keyframes backgroundAnimation {
+  0% {
+    background-position: right center;
+  }
+  50% {
+    background-position: initial;
+  }
+  100% {
+    background-position: right center;
+  }
+}
+footer p {
+  padding: 5px;
+  text-align: center;
+  font-size: 10px;
+}
+@media (width >= 768px) {
+  .post-container {
+    margin-top: 2rem;
+    width: min(100% - 1rem, 100ch);
+  }
+  button {
+    width: 30%;
+  }
 }
