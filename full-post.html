@@ -21,7 +21,7 @@
         // Replace the following code with your own logic to fetch the full post content
         async function fetchPostContent(postId) {
             try {
-                const response = await fetch(`http://127.0.0.1:3000/api/posts/${postId}`);
+                const response = await fetch(`http://localhost:3000/api/posts/${postId}`);
                 const data = await response.json();
                 return data.post;
             } catch (error) {

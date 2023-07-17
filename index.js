@@ -34,6 +34,23 @@ app.use(cors());
 app.get('/home', home);
 app.get('/post/:id', viewPost);
 
+app.get('/api/posts/:postId', async (req, res) => {
+  try {
+    const postId = req.params.postId;
+
+    const post = await Post.findOne({ postId });
+
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    res.json({ post });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // app.get('/api/posts', async (req, res) => {
 //   try {
 //     const { skip, limit } = req.query;
@@ -68,22 +85,22 @@ app.get('/post/:id', viewPost);
 //     res.status(500).json({ error: 'Internal Server Error' });
 //   }
 // });
-app.get('/api/posts/:id', async (req, res) => {
-  try {
-    const postId = req.params.id;
+// app.get('/api/posts/:id', async (req, res) => {
+//   try {
+//     const postId = req.params.id;
 
-    const post = await Post.findById(postId);
+//     const post = await Post.findById(postId);
 
-    if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
-    }
+//     if (!post) {
+//       return res.status(404).json({ error: 'Post not found' });
+//     }
 
-    res.json(post); // Return the post data as JSON
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+//     res.json(post); // Return the post data as JSON
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
 
 app.get('/post/:postId', async (req, res) => {
   try {
