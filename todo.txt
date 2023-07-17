@@ -1,4 +1,4 @@
-post readable on full screen after clicking button, its not what i choosen need to chose whole container needs css and should remove pagination
+
 
 better pagination?
 

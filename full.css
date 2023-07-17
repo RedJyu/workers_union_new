@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Work+Sans:wght@400;700&display=swap');
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: white;
+  --smoke: whitesmoke;
+  --text: #001119;
+  --background: #cdeffe;
+  --primary-button: #5468ff;
+  --secondary-button: #beeafe;
+  --accent: #5ecafd;
+
+  --ff-main: 'Work Sans', sans-serif;
+  --ff-sec: 'Merriweather', serif;
+
+  --transition: all 0.3s linear;
+
+  --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  --step-1: clamp(1.35rem, calc(1.2rem + 0.73vw), 1.77rem);
+  --step-2: clamp(1.62rem, calc(1.31rem + 1.53vw), 2.5rem);
+  --step-3: clamp(1.94rem, calc(1.39rem + 2.77vw), 3.53rem);
+  --step-4: clamp(2.33rem, calc(1.41rem + 4.63vw), 5rem);
+  --step-5: clamp(2.8rem, calc(1.32rem + 7.42vw), 7.07rem);
+}
+body {
+  background-color: var(--white);
+  font-size: var(--step-0);
+  color: var(--text);
+  line-height: 1.5;
+}
+.flow > * + * {
+  margin-top: 3px;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--ff-main);
+  font-size: var(--step-1);
+}
+p {
+  font-family: var(--ff-sec);
+}
+/*  */
+.post-container {
+  margin-top: 2px;
+  background-color: var(--smoke);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  justify-content: center;
+  list-style: none;
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: min(100% - 1rem, 55ch);
+  margin-inline: auto;
+}
+.underline-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.underline {
+  height: 4px;
+  width: 50%;
+  border-radius: 20px;
+  background-color: var(--primary-button);
+}
+#post-title {
+  text-transform: capitalize;
+}
+button {
+  margin: auto;
+  padding: 15px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: var(--white);
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #5468ff;
+  background-image: linear-gradient(
+    45deg,
+    #5468ff 0%,
+    #5ecafd 51%,
+    #5468ff 100%
+  );
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 30%;
+}
+#prevButton,
+#nextButton {
+  width: 130px;
+  white-space: nowrap;
+  text-align: center;
+  padding: 5px;
+}

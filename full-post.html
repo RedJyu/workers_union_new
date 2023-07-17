@@ -2,17 +2,27 @@
 <html>
 
 <head>
-    <title>Full Post Content</title>
-    <!-- Add any necessary CSS styles or scripts -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./full.css">
+    <title>Więcej</title>
+
 </head>
 
 <body>
     <div class="post-container">
         <h1 id="post-title"></h1>
+        <div class="underline-container">
+            <div class="underline"></div>
+        </div>
         <div class="full-container">
             <p id="post-content"></p>
         </div>
-
+        <button id="goHome" onclick="window.location.href='/index'">&lt; Wróć</button>
     </div>
 
     <script src="full.js"></script>

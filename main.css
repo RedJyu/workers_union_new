@@ -69,9 +69,6 @@ a {
   display: flex;
   justify-content: center;
 }
-.card-content .underline {
-  align-items: center;
-}
 .underline {
   height: 4px;
   width: 50%;
@@ -251,12 +248,14 @@ button:active {
   margin: 0;
   height: 0;
   transition: var(--transition);
+  display: none;
 }
 .links li a {
   white-space: nowrap;
 }
 .show-links {
   height: 7.9rem;
+  display: block;
 }
 @media (width >= 768px) {
   .card-container,
@@ -301,15 +300,7 @@ button:active {
     height: auto;
     display: flex;
   }
-  /* .img {
-    flex: 0 0 auto;
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-  } */
-  .img-container {
-    /* /edit */
-  }
+
   .full {
     background-color: red;
   }
