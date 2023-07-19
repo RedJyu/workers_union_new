@@ -48,23 +48,22 @@ app.get('/api/posts/:postId', async (req, res) => {
   }
 });
 
-// app.get('/api/posts', async (req, res) => {
-//   try {
-//     const { skip, limit } = req.query;
+app.get('/api/posts', async (req, res) => {
+  try {
+    const { skip, limit } = req.query;
 
-//     const posts = await Post.find()
-//       .sort({ CreatedAt: -1 })
-//       .skip(parseInt(skip))
-//       .limit(parseInt(limit));
+    const posts = await Post.find().sort({ CreatedAt: -1 });
+    // .skip(parseInt(skip))
+    // .limit(parseInt(limit));
 
-//     const totalPosts = await Post.countDocuments();
+    const totalPosts = await Post.countDocuments();
 
-//     res.json({ posts, totalPosts });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+    res.json({ posts, totalPosts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 // app.get('/api/posts/:id', async (req, res) => {
 //   try {
