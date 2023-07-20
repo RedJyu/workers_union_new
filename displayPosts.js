@@ -15,6 +15,10 @@ const displayPosts = (posts) => {
     <h2>${formattedDate}</h2>
     <img src="${imageUrl ? imageUrl : defaultImg}" alt="${title}"/>
     <h3>${title}</h3>
+    <div class='underline-container'>
+    
+    <div class='underline'></div>
+    </div>
     <a href="#" data-post-id="${postId}" class="button">więcej</a>
     </article>`;
     })

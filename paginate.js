@@ -1,5 +1,5 @@
 const paginate = (posts) => {
-  const itemsOnPage = 10;
+  const itemsOnPage = 9;
   const numberOfPages = Math.ceil(posts.length / itemsOnPage);
   const newPosts = Array.from({ length: numberOfPages }, (_, index) => {
     const start = index * itemsOnPage;

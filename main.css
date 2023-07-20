@@ -88,7 +88,8 @@ a {
 
 .post-container,
 .post-container-full,
-.post {
+.post,
+.card {
   margin-top: 2px;
   background-color: var(--smoke);
   border: 0;
@@ -260,13 +261,15 @@ button:active {
 @media (width >= 768px) {
   .card-container,
   .nav-center {
-    width: 75%;
+    width: min(80%);
     display: flex;
   }
-  .card-container {
+  .card-container,
+  .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    width: min(80%);
   }
   .card-content {
     flex: 1;
@@ -300,4 +303,56 @@ button:active {
     height: auto;
     display: flex;
   }
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.page-btn {
+  margin: 1px;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: 0.5s;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.active-btn {
+  background: var(--secondary-button);
+  color: var(--accent);
+}
+.prev-btn,
+.next-btn {
+  margin: 1px;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: 0.5s;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.section-title {
+  margin-top: 2px;
+  /* background-color: var(--smoke); */
+  border: 0;
+  border-radius: 6px;
+  justify-content: center;
+  list-style: none;
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
 }

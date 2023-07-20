@@ -77,10 +77,10 @@ a:focus {
   background-color: var(--primary-button);
 }
 
-.container {
+/* .container {
   width: min(100% - 1rem, 55ch);
   margin-inline: auto;
-}
+} */
 .card-container {
   word-wrap: break-word;
 }
@@ -280,9 +280,9 @@ button:active {
   height: 7.9rem;
 }
 @media (width >= 768px) {
-  .container {
+  /* .container {
     width: 80%;
-  }
+  } */
   .nav-toggle {
     display: none;
   }
@@ -295,5 +295,10 @@ button:active {
   .links {
     height: auto;
     display: flex;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 }

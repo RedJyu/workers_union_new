@@ -30,4 +30,27 @@ const init = async () => {
   setupUI();
 };
 
+btnContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('btn-container')) return;
+  if (e.target.classList.contains('page-btn')) {
+    index = parseInt(e.target.dataset.index);
+    window.scrollTo(0, 0);
+  }
+  if (e.target.classList.contains('next-btn')) {
+    index++;
+    window.scrollTo(0, 0);
+    if (index > pages.length - 1) {
+      return;
+    }
+  }
+  if (e.target.classList.contains('prev-btn')) {
+    index--;
+    window.scrollTo(0, 0);
+    if (index < 0) {
+      return;
+    }
+  }
+  setupUI();
+});
+
 window.addEventListener('load', init);
