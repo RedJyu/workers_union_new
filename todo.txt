@@ -1,12 +1,11 @@
+finish pagination and functionality
+adjust css to new html
 
+check full screen full post for text styling
 
-better pagination?
-
-even the images on full screen
-
-aktualności ->redirect to index
 create about
+redirect links to real content
 
-style  admin form and login
+style backend stuff, admin form and login
 
 deploy?
