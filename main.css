@@ -68,6 +68,7 @@ a {
 .underline-container {
   display: flex;
   justify-content: center;
+  padding-bottom: 10px;
 }
 .underline {
   height: 4px;
@@ -102,7 +103,7 @@ a {
   padding: 15px;
   position: relative;
   text-align: center;
-  text-decoration: none;
+  /* text-decoration: none; */
 }
 /* .pagination {
   text-align: center;

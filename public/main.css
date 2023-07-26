@@ -84,6 +84,11 @@ a:focus {
 .card-container {
   word-wrap: break-word;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50vh;
+}
 
 .post-container,
 .post-container-full {
@@ -301,4 +306,45 @@ button:active {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.form-container .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form-container .input-group label {
+  font-weight: bold;
+}
+
+.form-container input[type='text'],
+.form-container textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+label {
+  display: flex;
+  justify-content: center;
+  color: var(--primary-button);
 }

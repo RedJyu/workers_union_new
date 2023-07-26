@@ -17,11 +17,21 @@ router.get('/', auth, requireAdmin, (req, res) => {
   res.send(
     layoutAdmin({
       content: `
+ <div class="form-container">
   <form method="POST" action="/admin">
-    <input name="title" placeholder="Title" />
-    <textarea name="content" placeholder="Content" /></textarea>
-    <input name="imageUrl" placeholder="Image URL" />
-    <button type="submit">Submit</button>
+    <div class="input-group">
+      <label for="title">Tytuł</label>
+      <input type="text" name="title" id="title" placeholder="Tytuł" />
+    </div>
+    <div class="input-group">
+      <label for="content">Treść</label>
+      <textarea name="content" id="content" placeholder="Treść"></textarea>
+    </div>
+    <div class="input-group">
+      <label for="imageUrl">Link do zdjęcia</label>
+      <input type="text" name="imageUrl" id="imageUrl" placeholder="Link do zdjęcia" />
+    </div>
+    <button type="submit">Dodaj</button>
     ${
       errors.length > 0
         ? `<p class="error-message">${errors.join(', ')}</p>`
@@ -29,6 +39,8 @@ router.get('/', auth, requireAdmin, (req, res) => {
     }
     ${successMessage ? `<p class="success-message">${successMessage}</p>` : ''}
   </form>
+</div>
+
   `,
     })
   );

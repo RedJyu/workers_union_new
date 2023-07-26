@@ -65,39 +65,6 @@ app.get('/api/posts', async (req, res) => {
   }
 });
 
-// app.get('/api/posts/:id', async (req, res) => {
-//   try {
-//     const postId = req.params.id;
-
-//     const post = await Post.findById(postId);
-
-//     if (!post) {
-//       return res.status(404).json({ error: 'Post not found' });
-//     }
-
-//     res.json({ post });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
-// app.get('/api/posts/:id', async (req, res) => {
-//   try {
-//     const postId = req.params.id;
-
-//     const post = await Post.findById(postId);
-
-//     if (!post) {
-//       return res.status(404).json({ error: 'Post not found' });
-//     }
-
-//     res.json(post); // Return the post data as JSON
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
-
 app.get('/post/:postId', async (req, res) => {
   try {
     const postId = req.params.postId;

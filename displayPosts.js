@@ -10,14 +10,21 @@ const displayPosts = (posts) => {
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const day = date.getDate().toString().padStart(2, '0');
       const formattedDate = `${year}-${month}-${day}`;
+      let turnContent = '';
+
+      if (content.length > 100) {
+        turnContent = content.substring(0, 100) + '...';
+      } else turnContent = content;
 
       return `<article class="card">
     <h2>${formattedDate}</h2>
     <img src="${imageUrl ? imageUrl : defaultImg}" alt="${title}"/>
     <h3>${title}</h3>
     <div class='underline-container'>
-    
     <div class='underline'></div>
+    </div>
+    <div class='article'>${turnContent}</div>
+ 
     </div>
     <a href="#" data-post-id="${postId}" class="button">więcej</a>
     </article>`;
