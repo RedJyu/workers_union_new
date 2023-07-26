@@ -1,5 +1,4 @@
-finish pagination and functionality
-adjust css to new html
+more css, darkmode
 
 check full screen full post for text styling
 

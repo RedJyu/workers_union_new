@@ -182,16 +182,48 @@ button:hover {
   color: #fff;
   text-decoration: none;
 }
+/* button card */
+.button {
+  margin: auto;
+  /* padding: 5px 5px; */
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: var(--white);
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 400;
+  box-shadow: 0px 0px 14px -7px #5468ff;
+  background-image: linear-gradient(
+    45deg,
+    #5468ff 0%,
+    #5ecafd 51%,
+    #5468ff 100%
+  );
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 50%;
+}
+.button:hover {
+  background-position: right center;
+  animation: backgroundAnimation 2s infinite;
+  color: #fff;
+  text-decoration: none;
+}
 
 @keyframes backgroundAnimation {
   0% {
-    background-position: right center;
-  }
-  50% {
     background-position: initial;
   }
-  100% {
+  50% {
     background-position: right center;
+  }
+  100% {
+    background-position: left center;
   }
 }
 
@@ -310,24 +342,7 @@ button:active {
   justify-content: center;
   flex-wrap: wrap;
 }
-.page-btn {
-  margin: 1px;
-  width: 2rem;
-  height: 2rem;
-  padding: 0.1rem;
-  border-radius: 0.2rem;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
-  text-align: center;
-  transition: 0.5s;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-.active-btn {
-  background: var(--secondary-button);
-  color: var(--accent);
-}
+.page-btn,
 .prev-btn,
 .next-btn {
   margin: 1px;
@@ -342,6 +357,23 @@ button:active {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  background-image: none;
+  background-color: white;
+  color: var(--primary-button);
+}
+.active-btn {
+  background-color: var(--primary-button);
+  color: var(--white);
+  border-radius: 0.2rem;
+}
+.page-btn:hover {
+  background-color: #5468ff;
+}
+.next-btn:hover {
+  background-color: #5468ff;
+}
+.prev-btn:hover {
+  background-color: #5468ff;
 }
 .section-title {
   margin-top: 2px;
