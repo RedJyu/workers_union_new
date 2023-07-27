@@ -14,16 +14,33 @@ async function fetchPostContent(postId) {
 }
 
 // Display full post
+// const postContainer = document.getElementsByClassName('post-container')[0];
+// const postTitleElement = document.getElementById('post-title');
+// const postContentElement = document.getElementById('post-content');
+// const postTitle = document.getElementById('post-title-full');
+
+// fetchPostContent(postId).then((post) => {
+//   if (post) {
+//     postTitleElement.textContent = post.title;
+//     postTitle.textContent = post.title;
+//     postContentElement.textContent = post.content;
+//   } else {
+//     postContainer.innerHTML = '<h1>Post not found</h1>';
+//   }
+// });
 const postContainer = document.getElementsByClassName('post-container')[0];
 const postTitleElement = document.getElementById('post-title');
 const postContentElement = document.getElementById('post-content');
 const postTitle = document.getElementById('post-title-full');
+const postTitleFullElement = document.getElementById('post-title-full');
 
 fetchPostContent(postId).then((post) => {
   if (post) {
     postTitleElement.textContent = post.title;
-    postTitle.textContent = post.title;
-    postContentElement.textContent = post.content;
+    postTitleFullElement.textContent = post.title;
+
+    // Sanitize the HTML content using DOMPurify and set it to the "post-content" div
+    postContentElement.innerHTML = DOMPurify.sanitize(post.content);
   } else {
     postContainer.innerHTML = '<h1>Post not found</h1>';
   }

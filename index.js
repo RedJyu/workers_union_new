@@ -13,6 +13,7 @@ import cors from 'cors';
 import Post from './postSchema.js';
 
 const app = express();
+app.use(cors());
 app.use(express.static('public'));
 dotenv.config();
 connect();
@@ -29,7 +30,6 @@ app.use(
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 
 app.get('/home', home);
 app.get('/post/:id', viewPost);

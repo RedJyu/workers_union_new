@@ -3,7 +3,6 @@ import { auth, requireAdmin } from './auth.js';
 import { body, validationResult } from 'express-validator';
 import Post from './postSchema.js';
 import { layoutAdmin } from './views/admin/layout.js';
-import multer from 'multer';
 
 const router = express.Router();
 
@@ -18,15 +17,13 @@ router.get('/', auth, requireAdmin, (req, res) => {
     layoutAdmin({
       content: `
  <div class="form-container">
-  <form method="POST" action="/admin">
-    <div class="input-group">
-      <label for="title">Tytuł</label>
-      <input type="text" name="title" id="title" placeholder="Tytuł" />
-    </div>
-    <div class="input-group">
-      <label for="content">Treść</label>
-      <textarea name="content" id="content" placeholder="Treść"></textarea>
-    </div>
+
+ <form method="POST" action="/admin" id="postForm">
+ <div class="input-group">
+ <label for="title">Tytuł</label>
+ <input type="text" name="title" id="title" placeholder="Tytuł" />
+ <div id="editor" style="height: 300px;"></div>
+ <input type="hidden" name="content" id="quillContent">
     <div class="input-group">
       <label for="imageUrl">Link do zdjęcia</label>
       <input type="text" name="imageUrl" id="imageUrl" placeholder="Link do zdjęcia" />
