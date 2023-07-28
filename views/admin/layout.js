@@ -23,17 +23,13 @@ export const layoutAdmin = ({ content }) => {
 
     form.addEventListener("submit", async (event) => {
     
-      try {
+      
       const title = form.elements.title.value;
       const content = quill.root.innerHTML;
-
       quillContentInput.value = content;
       const imageUrl = form.elements.imageUrl.value;
       
-  console.log("Form Data:", { title, content, imageUrl });
-      } catch(error){
-        console.log(error)
-      }
+ 
 
     });
   });
