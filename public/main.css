@@ -170,7 +170,7 @@ button {
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: var(--white);
+  color: var(--text);
   border-radius: 10px;
   display: block;
   border: 0px;

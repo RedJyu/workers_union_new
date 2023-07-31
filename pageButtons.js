@@ -4,8 +4,12 @@ const pageButtons = (container, pages, activeIndex) => {
       activeIndex === pageIndex ? 'active-btn' : 'null'
     }" data-index="${pageIndex}">${pageIndex + 1}</button>`;
   });
-  btns.push('<button class="next-btn">>>></button>');
-  btns.unshift('<button class="prev-btn"><<<</button>');
+  btns.push(
+    '<button class="next-btn"><i class="fa-sharp fa-solid fa-chevron-right"></i></button>'
+  );
+  btns.unshift(
+    '<button class="prev-btn"><i class="fa-sharp fa-solid fa-chevron-left"></i></button>'
+  );
   container.innerHTML = btns.join('');
 };
 

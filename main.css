@@ -21,6 +21,9 @@ ul {
   --secondary-button: #beeafe;
   --accent: #5ecafd;
 
+  --box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+
   --ff-main: 'Work Sans', sans-serif;
   --ff-sec: 'Merriweather', serif;
 
@@ -33,6 +36,19 @@ ul {
   --step-4: clamp(2.33rem, calc(1.41rem + 4.63vw), 5rem);
   --step-5: clamp(2.8rem, calc(1.32rem + 7.42vw), 7.07rem);
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --white: #3e3030e8;
+    --smoke: #001119;
+    --text: white;
+    --background: #001119;
+    --primary-button: #5468ff;
+    --secondary-button: #beeafe;
+    --accent: #5ecafd;
+    --box-shadow: rgb(14, 122, 237) 0 1px 1px, rgb(14, 122, 237) 0 1px 1px;
+  }
+}
+
 html {
   color-scheme: light dark;
 }
@@ -81,6 +97,7 @@ a {
 .card-container,
 .nav-center {
   width: min(100% - 1rem, 55ch);
+  height: 30%;
   margin-inline: auto;
 }
 .card-container {
@@ -91,8 +108,7 @@ a {
   background-color: var(--smoke);
   border: 0;
   border-radius: 6px;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-shadow: var(--box-shadow);
   justify-content: center;
   list-style: none;
   overflow: hidden;
@@ -125,8 +141,7 @@ a {
   background-color: var(--smoke);
   border: 0;
   border-radius: 6px;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-shadow: var(--box-shadow);
   justify-content: center;
   list-style: none;
   overflow: hidden;
@@ -272,10 +287,10 @@ button:active {
 }
 /* New Nav */
 .nav-center {
-  background: white;
+  background: var(--smoke);
   box-shadow: var(--primary-button);
   line-height: 1;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--box-shadow);
 }
 .nav-header {
   display: flex;
@@ -305,7 +320,7 @@ button:active {
 }
 .links a:hover {
   background: var(--primary-button);
-  color: var(--white);
+  color: var(--text);
   padding-left: 1.5rem;
 }
 .links {
@@ -321,6 +336,7 @@ button:active {
   height: 7.9rem;
   display: block;
 }
+
 @media (width >= 768px) {
   .card-container,
   .nav-center {
@@ -381,7 +397,7 @@ button:active {
   height: 2rem;
   padding: 0.1rem;
   border-radius: 0.2rem;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--box-shadow);
   text-align: center;
   transition: 0.5s;
   cursor: pointer;
@@ -389,8 +405,8 @@ button:active {
   -webkit-user-select: none;
   touch-action: manipulation;
   background-image: none;
-  background-color: white;
-  color: var(--primary-button);
+  background-color: var(--smoke);
+  color: var(--text);
 }
 .active-btn {
   background-color: var(--primary-button);
