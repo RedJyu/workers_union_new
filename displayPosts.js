@@ -17,7 +17,7 @@ const displayPosts = (posts) => {
       } else turnContent = content;
 
       return `<article class="card">
-    <h2>${formattedDate}</h2>
+    <h4>${formattedDate}</h4>
     <img src="${imageUrl ? imageUrl : defaultImg}" alt="${title}"/>
     <h3>${title}</h3>
     <div class='underline-container'>
