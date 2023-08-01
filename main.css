@@ -38,7 +38,7 @@ ul {
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --white: #3e3030e8;
+    --white: #281f1fe8;
     --smoke: #001119;
     --text: white;
     --background: #001119;
@@ -92,7 +92,12 @@ a {
   border-radius: 20px;
   background-color: var(--primary-button);
 }
-
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+}
 .container,
 .card-container,
 .nav-center {

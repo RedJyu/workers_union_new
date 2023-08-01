@@ -19,7 +19,9 @@ const displayPosts = (posts) => {
       return `<article class="card">
     <h4>${formattedDate}</h4>
     <img src="${imageUrl ? imageUrl : defaultImg}" alt="${title}"/>
+    <div class='title-container'>
     <h3>${title}</h3>
+    </div>
     <div class='underline-container'>
     <div class='underline'></div>
     </div>

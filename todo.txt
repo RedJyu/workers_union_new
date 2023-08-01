@@ -1,8 +1,9 @@
-darkmode
 
 create about
-redirect links to real content
 
+clean code
+
+test deploy
 
 deploy?
 

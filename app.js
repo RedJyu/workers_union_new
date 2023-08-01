@@ -1,114 +1,56 @@
-const postsContainer = document.getElementById('posts-container');
-const currentPageElement = document.getElementById('currentPage');
-const prevButton = document.getElementById('prevButton');
-const nextButton = document.getElementById('nextButton');
+import fetchItems from './fetch.js';
+import displayPosts from './displayPosts.js';
+import paginate from './paginate.js';
+import pageButtons from './pageButtons.js';
+
+const title = document.querySelector('.section-title h1');
+const btnContainer = document.querySelector('.btn-container');
+
+let index = 0;
+let pages = [];
+
+const setupUI = () => {
+  displayPosts(pages[index]);
+  pageButtons(btnContainer, pages, index);
+};
 
 const toggleButton = document.getElementById('toggleButton');
-const links = document.querySelector('.links');
-
-const postsPerPage = 6; // Number of posts to display per page
-let currentPage = 1;
-let totalPosts = 0;
-let totalPages = 0;
-
-function fetchPosts(page) {
-  const skip = (page - 1) * postsPerPage;
-
-  fetch(`http://127.0.0.1:3000/api/posts?skip=${skip}&limit=${postsPerPage}`)
-    .then((response) => response.json())
-    .then((data) => {
-      const posts = data.posts;
-      totalPosts = data.totalPosts;
-      totalPages = Math.ceil(totalPosts / postsPerPage);
-      currentPageElement.textContent = `Page ${currentPage} of ${totalPages}`;
-      currentPageElement.classList.add('pagination');
-
-      postsContainer.innerHTML = '';
-
-      posts.forEach((post) => {
-        const postElement = document.createElement('div');
-        postElement.classList.add('post');
-
-        const truncatedContent = truncateString(post.content, 100);
-
-        const postImage = post.imageUrl ? post.imageUrl : 'default.jpg';
-
-        postElement.innerHTML = `
-        <div class="card-content">
-        <p class="post-time">${post.formattedCreatedAt}</p>
-        <div class="img-container">
-        <img src="${postImage}" alt="Post Image" />
-      </div>
-      <h2>${post.title}</h2>
-      <div class="underline-container">
-    <div class="underline"></div>
-  </div>
-      <p class="post-content">${truncatedContent}</p>
-      </div>
-    `;
-
-        if (post.content.length > 100) {
-          const fullContentButton = document.createElement('button');
-          fullContentButton.textContent = 'Read Full Post';
-
-          fullContentButton.addEventListener('click', () => {
-            // Assuming the post object is defined and contains the postId property
-            const postId = post.postId;
-
-            // Redirect to new page with full post content
-            window.location.href = `full-post.html?id=${postId}`;
-          });
-
-          postElement.appendChild(fullContentButton);
-        }
-
-        postsContainer.appendChild(postElement);
-      });
-
-      updatePaginationButtons();
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
-function truncateString(str, maxLength) {
-  if (str.length <= maxLength) {
-    return str;
-  }
-  return str.slice(0, maxLength) + '...';
-}
-
-function updatePaginationButtons() {
-  if (currentPage === 1) {
-    prevButton.style.display = 'none';
-  } else {
-    prevButton.style.display = 'block';
-  }
-
-  if (currentPage === totalPages) {
-    nextButton.style.display = 'none';
-  } else {
-    nextButton.style.display = 'block';
-  }
-}
-
-prevButton.addEventListener('click', () => {
-  if (currentPage > 1) {
-    currentPage--;
-    fetchPosts(currentPage);
-  }
-});
-
-nextButton.addEventListener('click', () => {
-  if (currentPage < totalPages) {
-    currentPage++;
-    fetchPosts(currentPage);
-  }
-});
-
-fetchPosts(currentPage);
 
 toggleButton.addEventListener('click', function () {
+  const links = document.querySelector('.links');
   links.classList.toggle('show-links');
 });
+
+const init = async () => {
+  const data = await fetchItems();
+  const posts = data.posts.reverse();
+  console.log(posts);
+  title.textContent = 'Aktualności';
+  pages = paginate(posts);
+  setupUI();
+};
+
+btnContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('btn-container')) return;
+  if (e.target.classList.contains('page-btn')) {
+    index = parseInt(e.target.dataset.index);
+    window.scrollTo(0, 0);
+  }
+  if (e.target.classList.contains('next-btn')) {
+    index++;
+    window.scrollTo(0, 0);
+    if (index > pages.length - 1) {
+      return;
+    }
+  }
+  if (e.target.classList.contains('prev-btn')) {
+    index--;
+    window.scrollTo(0, 0);
+    if (index < 0) {
+      return;
+    }
+  }
+  setupUI();
+});
+
+window.addEventListener('load', init);
